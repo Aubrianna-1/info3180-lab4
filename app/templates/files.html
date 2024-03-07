@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="images">
+  {% for image in images %}
+    <img src="{{ url_for('get_image', filename=imageLst) }}" width="300" height="150"/>
+  {% endfor %}
+</div>
+{% endblock %}
