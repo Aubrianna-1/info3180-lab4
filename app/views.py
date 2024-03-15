@@ -10,9 +10,9 @@ from werkzeug.security import check_password_hash
 def get_uploaded_images():
     imagesLst=[]
     rootdir = os.getcwd()
-    for subdir, dirs, files in os.walk(rootdir + app.config['UPLOAD_FOLDER'][1:]):
+    for subdir, dirs, files in os.walk(app.config['UPLOAD_FOLDER']):
         for file in files:
-            if str(file != '.gitkeep'):
+            if file != '.gitkeep':
                 imagesLst.append(str(file))
 
     return imagesLst
@@ -102,7 +102,7 @@ def get_image(filename):
 @login_required
 def files():
     imagesLst = get_uploaded_images()
-    return render_template('files.html', imagesLst=imagesLst)
+    return render_template('files.html', images=imagesLst)
 
 @app.route('/logout')
 def logout():
